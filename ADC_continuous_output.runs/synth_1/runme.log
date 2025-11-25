@@ -1,0 +1,345 @@
+
+*** Running vivado
+    with args -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Oct 27 10:22:30 2025
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source top.tcl -notrace
+Command: synth_design -top top -part xc7a35ticpg236-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35ti'
+INFO: [Device 21-403] Loading part xc7a35ticpg236-1L
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 19876
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1174.062 ; gain = 492.246
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'empty', assumed default net type 'wire' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v:29]
+INFO: [Synth 8-6157] synthesizing module 'top' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/top.v:23]
+INFO: [Synth 8-6157] synthesizing module 'adc' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v:3]
+	Parameter N bound to: 16 - type: integer 
+	Parameter t_CYC bound to: 4 - type: integer 
+	Parameter t_CONV bound to: 22 - type: integer 
+	Parameter t_CONV_SCALE bound to: 10 - type: integer 
+	Parameter t_EN bound to: 15 - type: integer 
+	Parameter SCLK_PERIOD bound to: 30 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'clock_divider' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v:3]
+	Parameter CLOCK_PERIOD bound to: 4000 - type: integer 
+	Parameter CYCLE_TIME bound to: 10 - type: integer 
+	Parameter MODE bound to: 1 - type: integer 
+	Parameter ROUND_MODE bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v:3]
+INFO: [Synth 8-6157] synthesizing module 'clock_divider__parameterized0' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v:3]
+	Parameter CLOCK_PERIOD bound to: 30 - type: integer 
+	Parameter CYCLE_TIME bound to: 10 - type: integer 
+	Parameter MODE bound to: 0 - type: integer 
+	Parameter ROUND_MODE bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clock_divider__parameterized0' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v:3]
+INFO: [Synth 8-6157] synthesizing module 'delay_timer' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v:3]
+	Parameter DELAY_PERIOD bound to: 2190 - type: integer 
+	Parameter CYCLE_TIME bound to: 10 - type: integer 
+	Parameter ROUND_MODE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'delay_timer' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v:3]
+INFO: [Synth 8-6157] synthesizing module 'delay_timer__parameterized0' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v:3]
+	Parameter DELAY_PERIOD bound to: 15 - type: integer 
+	Parameter CYCLE_TIME bound to: 10 - type: integer 
+	Parameter ROUND_MODE bound to: 0 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'delay_timer__parameterized0' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v:3]
+INFO: [Synth 8-226] default block is never used [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v:116]
+INFO: [Synth 8-6155] done synthesizing module 'adc' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v:3]
+INFO: [Synth 8-6157] synthesizing module 'fifo' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v:3]
+	Parameter BUFFER_WIDTH bound to: 2048 - type: integer 
+	Parameter ADDR_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fifo' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/uart_tx.v:8]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/uart_tx.v:8]
+INFO: [Synth 8-226] default block is never used [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/top.v:104]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/top.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1283.957 ; gain = 602.141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1283.957 ; gain = 602.141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1283.957 ; gain = 602.141
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1283.957 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/constrs_1/new/pinout.xdc]
+Finished Parsing XDC File [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/constrs_1/new/pinout.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/constrs_1/new/pinout.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1364.578 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1364.578 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1364.578 ; gain = 682.762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35ticpg236-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1364.578 ; gain = 682.762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1364.578 ; gain = 682.762
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'adc'
+INFO: [Synth 8-802] inferred FSM for state register 'r_state_reg' in module 'uart_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'top'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                               00 |                               00
+                    CONV |                               01 |                               01
+               ACQ_START |                               10 |                               10
+                ACQ_WAIT |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'adc'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  S_IDLE |                               00 |                              000
+             S_START_BIT |                               01 |                              001
+             S_DATA_BITS |                               10 |                              010
+              S_STOP_BIT |                               11 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'r_state_reg' using encoding 'sequential' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE2 |                               00 |                               00
+                  iSTATE |                               01 |                               01
+                 iSTATE0 |                               10 |                               10
+                 iSTATE1 |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'top'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1364.578 ; gain = 682.762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   12 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 4     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 20    
++---RAMs : 
+	              32K Bit	(2048 X 16 bit)          RAMs := 1     
++---Muxes : 
+	   4 Input   16 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 9     
+	   3 Input    1 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 12    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1364.578 ; gain = 682.762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|top         | inst/data_buffer_reg | 2 K x 16(READ_FIRST)   | W |   | 2 K x 16(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1487.000 ; gain = 805.184
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1519.707 ; gain = 837.891
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|top         | inst/data_buffer_reg | 2 K x 16(READ_FIRST)   | W |   | 2 K x 16(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
++------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance inst/data_buffer_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1520.238 ; gain = 838.422
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1733.594 ; gain = 1051.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1733.594 ; gain = 1051.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1733.594 ; gain = 1051.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1733.594 ; gain = 1051.777
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1734.609 ; gain = 1052.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1734.609 ; gain = 1052.793
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    11|
+|3     |LUT1     |     4|
+|4     |LUT2     |    16|
+|5     |LUT3     |    17|
+|6     |LUT4     |    13|
+|7     |LUT5     |    20|
+|8     |LUT6     |    35|
+|9     |RAMB36E1 |     1|
+|10    |FDRE     |   152|
+|11    |FDSE     |     6|
+|12    |IBUF     |     4|
+|13    |OBUF     |     3|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1734.609 ; gain = 1052.793
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:23 . Memory (MB): peak = 1734.609 ; gain = 972.172
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1734.609 ; gain = 1052.793
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1740.734 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1744.410 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 1a475515
+INFO: [Common 17-83] Releasing license: Synthesis
+41 Infos, 1 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:49 . Memory (MB): peak = 1744.410 ; gain = 1254.125
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1744.410 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.runs/synth_1/top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Oct 27 10:23:26 2025...
