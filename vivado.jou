@@ -23,3 +23,6 @@
 #-----------------------------------------------------------
 start_gui
 open_project {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.xpr}
+update_compile_order -fileset sources_1
+launch_simulation
+source top_tb.tcl
