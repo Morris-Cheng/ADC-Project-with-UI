@@ -92,6 +92,8 @@ read_xdc {{C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continu
 set_property used_in_implementation false [get_files {{C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/constrs_1/new/pinout.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/utils_1/imports/synth_1/top.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

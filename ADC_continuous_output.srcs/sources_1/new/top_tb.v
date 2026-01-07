@@ -29,7 +29,6 @@ module top_tb();
     wire adc_busy;
     wire [15:0] data_out;
     reg reset = 0;
-    reg continuous = 0;
         
     adc #(
         .N(16),
@@ -43,7 +42,6 @@ module top_tb();
         .adc_enable(adc_enable),
         .data_input(data_in),
         .reset(reset),
-        .continuous(continuous),
         .cnv_out(cnv),
         .sclk_out(sclk),
         .data_output(data_out),
@@ -159,9 +157,7 @@ module top_tb();
         #10;
         reset = 0;
         adc_enable = 1;
-        continuous = 1;
         #25;
-        adc_enable = 0;
 //        reset = 0;
         #2250;
         
@@ -207,8 +203,8 @@ module top_tb();
         #1150;
         adc_enable = 1;
         #10;
-        adc_enable = 0;
         #2255;
+        #20;
         
         data_in = 1;
         #95;
@@ -219,6 +215,6 @@ module top_tb();
         data_in = 0;
         
         #5000;
-        continuous = 0;
+        adc_enable = 0;
     end
 endmodule

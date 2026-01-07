@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-| Date         : Mon Oct 27 10:23:26 2025
+| Date         : Wed Jan  7 14:35:54 2026
 | Host         : LAPTOP-DSFFK1DP running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -34,8 +34,8 @@ Table of Contents
 | Slice LUTs*             |   86 |     0 |          0 |     20800 |  0.41 |
 |   LUT as Logic          |   86 |     0 |          0 |     20800 |  0.41 |
 |   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
-| Slice Registers         |  158 |     0 |          0 |     41600 |  0.38 |
-|   Register as Flip Flop |  158 |     0 |          0 |     41600 |  0.38 |
+| Slice Registers         |  163 |     0 |          0 |     41600 |  0.39 |
+|   Register as Flip Flop |  163 |     0 |          0 |     41600 |  0.39 |
 |   Register as Latch     |    0 |     0 |          0 |     41600 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |      8150 |  0.00 |
@@ -59,8 +59,8 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 6     |          Yes |         Set |            - |
-| 152   |          Yes |       Reset |            - |
+| 0     |          Yes |         Set |            - |
+| 163   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -153,15 +153,14 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  152 |        Flop & Latch |
-| LUT6     |   35 |                 LUT |
+| FDRE     |  163 |        Flop & Latch |
+| LUT6     |   33 |                 LUT |
 | LUT5     |   20 |                 LUT |
-| LUT3     |   17 |                 LUT |
-| LUT2     |   16 |                 LUT |
-| LUT4     |   13 |                 LUT |
+| LUT3     |   18 |                 LUT |
+| LUT4     |   17 |                 LUT |
+| LUT2     |   15 |                 LUT |
 | CARRY4   |   11 |          CarryLogic |
-| FDSE     |    6 |        Flop & Latch |
-| LUT1     |    4 |                 LUT |
+| LUT1     |    6 |                 LUT |
 | IBUF     |    4 |                  IO |
 | OBUF     |    3 |                  IO |
 | RAMB36E1 |    1 |        Block Memory |

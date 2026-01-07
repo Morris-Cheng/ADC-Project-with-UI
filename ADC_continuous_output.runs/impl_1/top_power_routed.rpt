@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-| Date             : Mon Oct 27 10:24:41 2025
+| Date             : Wed Jan  7 14:37:28 2026
 | Host             : LAPTOP-DSFFK1DP running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.066        |
+| Total On-Chip Power (W)  | 0.067        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.004        |
+| Dynamic (W)              | 0.006        |
 | Device Static (W)        | 0.062        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 99.7         |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      292 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       84 |     20800 |            0.40 |
-|   Register     |    <0.001 |      158 |     41600 |            0.38 |
+| Clocks         |    <0.001 |        3 |       --- |             --- |
+| Slice Logic    |    <0.001 |      300 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       81 |     20800 |            0.39 |
+|   Register     |    <0.001 |      163 |     41600 |            0.39 |
 |   CARRY4       |    <0.001 |       11 |      8150 |            0.13 |
 |   Others       |     0.000 |       17 |       --- |             --- |
-| Signals        |    <0.001 |      220 |       --- |             --- |
-| Block RAM      |     0.001 |        1 |        50 |            2.00 |
-| I/O            |     0.002 |        7 |       106 |            6.60 |
+| Signals        |    <0.001 |      228 |       --- |             --- |
+| Block RAM      |    <0.001 |        1 |        50 |            2.00 |
+| I/O            |     0.003 |        7 |       106 |            6.60 |
 | Static Power   |     0.062 |          |           |                 |
-| Total          |     0.066 |          |           |                 |
+| Total          |     0.067 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,9 +72,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       0.950 |     0.009 |       0.003 |      0.006 |       NA    | Unspecified | NA         |
+| Vccint    |       0.950 |     0.008 |       0.002 |      0.006 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.011 |       0.000 |      0.011 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,11 +138,10 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------+-----------+
-| Name   | Power (W) |
-+--------+-----------+
-| top    |     0.004 |
-|   inst |     0.001 |
-+--------+-----------+
++------+-----------+
+| Name | Power (W) |
++------+-----------+
+| top  |     0.006 |
++------+-----------+
 
 

@@ -32,7 +32,6 @@ module top(
     
     wire adc_busy;
     wire [15:0] data_out;
-    reg continuous = 0;
     
     adc #(
         .N(16),
@@ -43,10 +42,9 @@ module top(
         .SCLK_PERIOD(30)
     )adc_inst(
         .clk(clk),
-        .adc_enable(0),
+        .adc_enable(adc_enable),
         .data_input(data_in),
         .reset(reset),
-        .continuous(adc_enable),
         .cnv_out(cnv),
         .sclk_out(sclk),
         .data_output(data_out),

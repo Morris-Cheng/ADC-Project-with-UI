@@ -16,7 +16,6 @@ module adc#(
         input  wire           adc_enable,   //adc enable signal
         input  wire           data_input,   //data input bus
         input  wire           reset,
-        input  wire           continuous,   //continuous mode to stream out adc data
         output wire           cnv_out,      //cnv signal output bus
         output wire           sclk_out,     //sclk signal output bus
         output reg  [N-1:0]   data_output,  //data output bus
@@ -29,28 +28,27 @@ module adc#(
     localparam t_CONV_ns = t_CONV * us_2_ns / t_CONV_SCALE;
     localparam N_bit = N - 1;
     
-    reg [1:0] state = 0;
-    reg [1:0] next_state = 0;
+    reg [2:0] state = 0;
+    reg [2:0] next_state = 0;
     
     //Define all the states
-    reg [1:0] IDLE      = 0;  //idle state, waiting for conversion start
-    reg [1:0] CONV      = 1;  //conversion state: waiting for conversion to end to move onto acquisition state
-    reg [1:0] ACQ_START = 2;  //start of acquisition state, setting up clock signal
-    reg [1:0] ACQ_WAIT  = 3;  //waiting for acquisition state to end to go back to idle state
+    localparam IDLE      = 0;  //idle state, waiting for conversion start
+    localparam CONV      = 1;  //conversion state: waiting for conversion to end to move onto acquisition state
+    localparam ACQ_START = 2;  //start of acquisition state, setting up clock signal
+    localparam ACQ_WAIT  = 3;  //waiting for acquisition state to end to go back to idle state
+    localparam ACQ_END   = 4;  //observing wait time until next acquisition cycle
     
-    
-    reg  continuous_enable = 0;
     reg  conv_ready_d = 0;
     wire conv_ready;
-    wire conv_ready_rising_edge = conv_ready && ~conv_ready_d;
+    wire conv_ready_falling_edge = ~conv_ready && conv_ready_d;
     clock_divider #(
-        .CLOCK_PERIOD(t_CYC_ns),
-        .CYCLE_TIME(10),
-        .MODE(1),
-        .ROUND_MODE(1)
+        .CLOCK_CYCLE_TIME(10),     //using system clock of 100MHz
+        .NEW_CLOCK_CYCLE_TIME(t_CYC_ns), //divided clock HALF period: 30ns
+        .IDLE_STATE(1),            //set idle state to 0 (LOW)
+        .ROUND_MODE(1)             //set round mode to round UP
     ) conv_clk(
         .clk(clk),
-        .enable(continuous_enable),
+        .enable(adc_enable),
         .divided_clk_out(conv_ready)
     );
     
@@ -59,10 +57,10 @@ module adc#(
     wire sclk_reg;
     wire sclk_rising_edge = sclk_reg & ~sclk_d;
     clock_divider #(
-        .CLOCK_PERIOD(SCLK_PERIOD),
-        .CYCLE_TIME(10),
-        .MODE(0),       //sets the idle state signal to low, since t_EN has already accounted for the data valid period, no need to create falling edge on sclk line
-        .ROUND_MODE(1)  //sets round mode to round up
+        .CLOCK_CYCLE_TIME(10),     //using system clock of 100MHz
+        .NEW_CLOCK_CYCLE_TIME(SCLK_PERIOD), //divided clock HALF period: 30ns
+        .IDLE_STATE(0),            //set idle state to 0 (LOW)
+        .ROUND_MODE(1)             //set round mode to round UP
     ) serial_clk(
         .clk(clk),
         .enable(sclk_enable),
@@ -74,24 +72,24 @@ module adc#(
     wire cnv_rising_edge = cnv_reg & ~cnv_d;
     wire conv_delay_done;
     delay_timer #(
-        .DELAY_PERIOD(t_CONV_ns - CYCLE_TIME), //used to account for the additional clock cycle delay from latching registers, there is still 10ns extra just to be safe
-        .CYCLE_TIME(10),
-        .ROUND_MODE(0)
-    ) conv_delay_timer(
+        .CLOCK_CYCLE_TIME(10), //using a system clock of 100MHz = clock cycle time of 10ns
+        .DELAY_TIME(t_CONV_ns - CYCLE_TIME),       //delay for 30ns (set to for zero delay)
+        .ROUND_MODE(0)         //round mode: 0 for round down, 1 for round up
+    ) conv_delay_timer (        //name of instance can be changed to any
         .clk(clk),
-        .enable(cnv_rising_edge), //enables delay timer when cnv rising edge is detected
+        .enable(cnv_rising_edge),
         .done(conv_delay_done)
     );
     
     reg enable_delay_trigger = 0;
     wire enable_delay_done;
     delay_timer #(
-        .DELAY_PERIOD(t_EN),
-        .CYCLE_TIME(10),
-        .ROUND_MODE(0)
-    ) enable_delay_timer(
+        .CLOCK_CYCLE_TIME(10), //using a system clock of 100MHz = clock cycle time of 10ns
+        .DELAY_TIME(t_EN),       //delay for 30ns (set to for zero delay)
+        .ROUND_MODE(0)         //round mode: 0 for round down, 1 for round up
+    ) enable_delay_timer (        //name of instance can be changed to any
         .clk(clk),
-        .enable(conv_delay_done),  //enables delay timer when conversion is over
+        .enable(conv_delay_done),
         .done(enable_delay_done)
     );
     
@@ -109,13 +107,14 @@ module adc#(
         adc_enable_d <= adc_enable;
         cnv_d <= cnv_reg;
         sclk_d <= sclk_reg;
+        conv_ready_d <= conv_ready;
     end
     
     always @(*) begin : next_state_logic
         next_state = state;
         case(state)
             IDLE: begin
-                if((conv_ready_rising_edge && continuous) || (adc_enable_rising_edge && ~continuous)) begin
+                if(adc_enable) begin
                     next_state = CONV;
                 end
                 else begin
@@ -143,6 +142,15 @@ module adc#(
             
             ACQ_WAIT: begin
                 if(current_bit >= N) begin
+                    next_state = ACQ_END;
+                end
+                else begin
+                    next_state = next_state;
+                end
+            end
+            
+            ACQ_END: begin
+                if(conv_ready_falling_edge) begin
                     next_state = IDLE;
                 end
                 else begin
@@ -171,12 +179,6 @@ module adc#(
             if(state == CONV) begin : CONV_register_update
                 busy <= 1;
                 cnv_reg <= 1;
-                if(continuous) begin
-                    continuous_enable <= 1;
-                end
-                else begin
-                    continuous_enable <= 0;
-                end
             end
             else if(state == ACQ_START) begin
                 cnv_reg <= 0;

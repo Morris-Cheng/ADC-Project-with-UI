@@ -1,62 +1,57 @@
 `timescale 1ns / 1ps
 
 module delay_timer #(
-        parameter DELAY_PERIOD = 0,
-        parameter CYCLE_TIME   = 10,  //time required for each clock complete cycle
-        parameter ROUND_MODE   = 0    //rounding mode: 0 to round down (set as default), 1 to round up
+        parameter CLOCK_CYCLE_TIME = 0,
+        parameter DELAY_TIME = 0,
+        parameter ROUND_MODE = 0
     )(
         input  wire clk,
         input  wire enable,
         output wire done
     );
     
-    reg done_reg = 0;
-    reg previous_enable = 0;
-    wire enable_rising_edge;
+    reg enable_d = 0;
+    wire enable_rising = enable & ~enable_d;
     
-    generate
-        if(DELAY_PERIOD == 0 || (ROUND_MODE == 0 && DELAY_PERIOD / CYCLE_TIME == 0)) begin : zero_delay_block
+    generate 
+        if(DELAY_TIME == 0) begin : zero_delay //bypasses all the code and outputs done for one clock cycle
+            reg counter = 0;
+            
             always @(posedge clk) begin
-                if(enable_rising_edge) begin
-                    done_reg <= 1;
+                if(enable_rising) begin
+                    counter <= 1;
                 end
                 else begin
-                    done_reg <= 0;
+                    counter <= 0;
                 end
-                previous_enable <= enable;
+                
+                enable_d <= enable;
             end
             
-            assign enable_rising_edge = enable & ~previous_enable;
+            assign done = counter;
         end
-        else begin : delay_block
-            //calculate the number of cycles needed to reach the desired delay time
-            localparam DELAY_CYCLE = (ROUND_MODE == 0) ? (DELAY_PERIOD / CYCLE_TIME) : 
-                                                         ((DELAY_PERIOD + CYCLE_TIME - 1) / CYCLE_TIME);
-            reg [$clog2(DELAY_CYCLE + 1) - 1 : 0] delay_counter = 0;
-            
+        else begin : non_zero_delay
+            localparam DELAY_CYCLE = (ROUND_MODE == 0) ? (DELAY_TIME / CLOCK_CYCLE_TIME): 
+                                                        ((DELAY_TIME + CLOCK_CYCLE_TIME - 1) / CLOCK_CYCLE_TIME);
+    
+            reg [$clog2(DELAY_CYCLE + 1) : 0] delay_counter = 0;
+            reg enable_flag = 0;
+        
             always @(posedge clk) begin
-                done_reg <= 0;
-                
-                if (enable_rising_edge) begin
-                    delay_counter <= DELAY_CYCLE;
-                    done_reg <= 0;
+                if(enable_rising) begin
+                    enable_flag <= 1;
                 end
-                else if (delay_counter > 1) begin
-                    delay_counter <= delay_counter - 1;
-                end
-                else if (delay_counter == 1) begin
-                    delay_counter <= 0;
-                    done_reg <= 1;
+                else if(delay_counter <= DELAY_CYCLE && enable_flag) begin
+                    delay_counter <= delay_counter + 1;
                 end
                 else begin
                     delay_counter <= 0;
+                    enable_flag <= 0;
                 end
-                
-                previous_enable <= enable;
+                enable_d <= enable;
             end
             
-            assign enable_rising_edge = enable & ~previous_enable;
+            assign done = delay_counter == DELAY_CYCLE;
         end
-        assign done = done_reg;
     endgenerate
 endmodule

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
-| Date         : Mon Oct 27 10:24:14 2025
+| Date         : Wed Jan  7 14:36:52 2026
 | Host         : LAPTOP-DSFFK1DP running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    13 |
-|    Minimum number of control sets                        |    13 |
+| Total control sets                                       |    12 |
+|    Minimum number of control sets                        |    12 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    34 |
+| Unused register locations in slices containing registers |    21 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,11 +39,11 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    13 |
-| >= 0 to < 4        |     2 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     2 |
+| Total control sets |    12 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     3 |
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     1 |
 | >= 14 to < 16      |     0 |
@@ -58,34 +58,33 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              45 |           12 |
+| No           | No                    | No                     |              45 |           13 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               6 |            2 |
-| Yes          | No                    | No                     |              23 |            9 |
+| No           | Yes                   | No                     |               7 |            3 |
+| Yes          | No                    | No                     |              21 |            4 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              84 |           24 |
+| Yes          | Yes                   | No                     |              90 |           23 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+----------------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |                    Enable Signal                   |                Set/Reset Signal                | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+----------------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | adc_inst/continuous_enable1_out                    |                                                |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | adc_inst/continuous_enable                         | adc_inst/conv_clk/clock_divider_counter        |                1 |              2 |         2.00 |
-|  clk_IBUF_BUFG | adc_inst/serial_clk/FSM_sequential_state_reg[0][0] | adc_inst/data_output[15]_i_1_n_0               |                1 |              5 |         5.00 |
-|  clk_IBUF_BUFG |                                                    | adc_inst/conv_delay_timer/enable_rising_edge_1 |                2 |              6 |         3.00 |
-|  clk_IBUF_BUFG | adc_inst/continuous_enable                         |                                                |                3 |              6 |         2.00 |
-|  clk_IBUF_BUFG | uart_tx_inst/E[0]                                  |                                                |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG | uart_tx_inst/r_tx_data_0                           |                                                |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG | uart_tx_inst/FSM_sequential_r_state_reg[1]_0[0]    | uart_tx_inst/r_clk_counter0                    |                4 |             10 |         2.50 |
-|  clk_IBUF_BUFG | inst/wr_pointer0                                   | reset_IBUF                                     |                3 |             12 |         4.00 |
-|  clk_IBUF_BUFG | adc_inst/serial_clk/E[0]                           | reset_IBUF                                     |                4 |             16 |         4.00 |
-|  clk_IBUF_BUFG | adc_inst/data_output[15]_i_1_n_0                   | reset_IBUF                                     |                4 |             16 |         4.00 |
-|  clk_IBUF_BUFG | inst/rd_pointer0                                   | reset_IBUF                                     |                7 |             23 |         3.29 |
-|  clk_IBUF_BUFG |                                                    |                                                |               12 |             45 |         3.75 |
-+----------------+----------------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
++----------------+-------------------------------------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
+|  Clock Signal  |                           Enable Signal                           |                    Set/Reset Signal                    | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------+-------------------------------------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
+|  clk_IBUF_BUFG | adc_inst/serial_clk/FSM_onehot_state_reg[3][0]                    | adc_inst/data_output[15]_i_1_n_0                       |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG | adc_inst/enable_delay_timer/E[0]                                  |                                                        |                1 |              5 |         5.00 |
+|  clk_IBUF_BUFG |                                                                   | adc_inst/conv_clk/clock_divider_counter[7]_i_1_n_0     |                3 |              7 |         2.33 |
+|  clk_IBUF_BUFG | uart_tx_inst/E[0]                                                 |                                                        |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | adc_inst/conv_delay_timer/non_zero_delay.delay_counter[7]_i_2_n_0 | adc_inst/conv_delay_timer/non_zero_delay.delay_counter |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG | uart_tx_inst/r_tx_data_0                                          |                                                        |                1 |              8 |         8.00 |
+|  clk_IBUF_BUFG | uart_tx_inst/FSM_sequential_r_state_reg[1]_0[0]                   | uart_tx_inst/r_clk_counter0                            |                4 |             10 |         2.50 |
+|  clk_IBUF_BUFG | inst/wr_pointer0                                                  | reset_IBUF                                             |                3 |             12 |         4.00 |
+|  clk_IBUF_BUFG | adc_inst/serial_clk/E[0]                                          | reset_IBUF                                             |                2 |             16 |         8.00 |
+|  clk_IBUF_BUFG | adc_inst/data_output[15]_i_1_n_0                                  | reset_IBUF                                             |                4 |             16 |         4.00 |
+|  clk_IBUF_BUFG | inst/rd_pointer0                                                  | reset_IBUF                                             |                7 |             23 |         3.29 |
+|  clk_IBUF_BUFG |                                                                   |                                                        |               13 |             45 |         3.46 |
++----------------+-------------------------------------------------------------------+--------------------------------------------------------+------------------+----------------+--------------+
 
 
