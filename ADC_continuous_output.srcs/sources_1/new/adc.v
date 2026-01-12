@@ -142,15 +142,6 @@ module adc#(
             
             ACQ_WAIT: begin
                 if(current_bit >= N) begin
-                    next_state = ACQ_END;
-                end
-                else begin
-                    next_state = next_state;
-                end
-            end
-            
-            ACQ_END: begin
-                if(conv_ready_falling_edge) begin
                     next_state = IDLE;
                 end
                 else begin

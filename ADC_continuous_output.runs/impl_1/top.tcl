@@ -107,6 +107,7 @@ set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 2
   set_param general.usePosixSpawnForFork 1
+  set_param xicom.use_bs_reader 1
   set_param runs.launchOptions { -jobs 4  }
   open_checkpoint top_routed.dcp
   set_property webtalk.parent_dir {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.cache/wt} [current_project]
