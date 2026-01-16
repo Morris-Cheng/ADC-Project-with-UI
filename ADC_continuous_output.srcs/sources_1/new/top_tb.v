@@ -32,9 +32,7 @@ module top_tb();
         
     adc #(
         .N(16),
-        .t_CYC(4),
-        .t_CONV(22),
-        .t_CONV_SCALE(10),
+        .t_CONV(2200),
         .t_EN(15),
         .SCLK_PERIOD(30)
     )adc_inst(

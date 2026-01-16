@@ -4,9 +4,7 @@ module adc#(
         parameter N = 0,                //ADC resolution
         
         //timing specifications, refer to ADC datasheet
-        parameter t_CYC         = 0,    //units: us
-        parameter t_CONV        = 0,    //units: us
-        parameter t_CONV_SCALE  = 0,    //sclae factor for conversion time
+        parameter t_CONV        = 0,    //units: ns
         parameter t_EN          = 0,
         parameter SCLK_PERIOD   = 0,    //units: ns 60
         
@@ -22,10 +20,6 @@ module adc#(
         output wire           busy_out      //busy indicator
     );
     
-    //converting all time related variables to number of cycles
-    localparam us_2_ns = 1000;
-    localparam t_CYC_ns = t_CYC * us_2_ns;
-    localparam t_CONV_ns = t_CONV * us_2_ns / t_CONV_SCALE;
     localparam N_bit = N - 1;
     
     reg [2:0] state = 0;
@@ -37,20 +31,6 @@ module adc#(
     localparam ACQ_START = 2;  //start of acquisition state, setting up clock signal
     localparam ACQ_WAIT  = 3;  //waiting for acquisition state to end to go back to idle state
     localparam ACQ_END   = 4;  //observing wait time until next acquisition cycle
-    
-    reg  conv_ready_d = 0;
-    wire conv_ready;
-    wire conv_ready_falling_edge = ~conv_ready && conv_ready_d;
-    clock_divider #(
-        .CLOCK_CYCLE_TIME(10),     //using system clock of 100MHz
-        .NEW_CLOCK_CYCLE_TIME(t_CYC_ns), //divided clock HALF period: 30ns
-        .IDLE_STATE(1),            //set idle state to 0 (LOW)
-        .ROUND_MODE(1)             //set round mode to round UP
-    ) conv_clk(
-        .clk(clk),
-        .enable(adc_enable),
-        .divided_clk_out(conv_ready)
-    );
     
     reg  sclk_d = 0;
     reg  sclk_enable = 0;
@@ -73,7 +53,7 @@ module adc#(
     wire conv_delay_done;
     delay_timer #(
         .CLOCK_CYCLE_TIME(10), //using a system clock of 100MHz = clock cycle time of 10ns
-        .DELAY_TIME(t_CONV_ns - CYCLE_TIME),       //delay for 30ns (set to for zero delay)
+        .DELAY_TIME(t_CONV - CYCLE_TIME),       //delay for 30ns (set to for zero delay)
         .ROUND_MODE(0)         //round mode: 0 for round down, 1 for round up
     ) conv_delay_timer (        //name of instance can be changed to any
         .clk(clk),
@@ -107,7 +87,6 @@ module adc#(
         adc_enable_d <= adc_enable;
         cnv_d <= cnv_reg;
         sclk_d <= sclk_reg;
-        conv_ready_d <= conv_ready;
     end
     
     always @(*) begin : next_state_logic

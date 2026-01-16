@@ -3,7 +3,7 @@
 May 22 2025
 00:13:55
 C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.sim/sim_1/behav/xsim/glbl.v,1741209010,verilog,,,,glbl,,,,,,,,
-C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v,1767997014,verilog,,C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v,,adc,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v,1768589373,verilog,,C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v,,adc,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v,1767125447,verilog,,C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v,,clock_divider,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v,1767824417,verilog,,C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v,,delay_timer,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v,1761547508,verilog,,C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/uart_tx.v,,fifo,,,../../../../../../../../Xilinx/2025.1/Vivado/data/rsb/busdef,,,,,
