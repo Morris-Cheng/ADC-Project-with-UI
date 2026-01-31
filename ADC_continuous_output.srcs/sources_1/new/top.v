@@ -27,7 +27,9 @@ module top(
         input wire adc_enable,
         output wire cnv,
         output wire sclk,
-        output wire uart_tx
+        output wire uart_tx,
+        output wire [7:0] seg,
+        output wire [3:0] an
     );
     
     wire adc_busy;
@@ -150,4 +152,18 @@ module top(
         endcase
         busy_d <= busy;
     end
+    
+    wire [31:0] temp;
+    assign temp = (data_out * 16'd5000) >> 16;
+    wire [15:0] value;
+    assign value = temp;
+    
+    display #(
+        .N(16)
+    ) display_inst(
+        .clk(clk),
+        .value(value),
+        .seg(seg),
+        .an(an)
+    );
 endmodule

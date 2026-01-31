@@ -3,8 +3,8 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Fri Jan 16 11:03:51 2026
-# Process ID         : 23780
+# Start of session at: Sat Jan 31 10:08:05 2026
+# Process ID         : 25468
 # Current directory  : C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.runs/synth_1
 # Command line       : vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file           : C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.runs/synth_1/top.vds
@@ -17,8 +17,8 @@
 # CPU Physical cores : 4
 # CPU Logical cores  : 8
 # Host memory        : 16859 MB
-# Swap memory        : 13421 MB
-# Total Virtual      : 30280 MB
-# Available Virtual  : 11644 MB
+# Swap memory        : 12348 MB
+# Total Virtual      : 29207 MB
+# Available Virtual  : 4964 MB
 #-----------------------------------------------------------
 source top.tcl -notrace

@@ -21,16 +21,8 @@ module adc#(
     );
     
     localparam N_bit = N - 1;
-    
-    reg [2:0] state = 0;
-    reg [2:0] next_state = 0;
-    
-    //Define all the states
-    localparam IDLE      = 0;  //idle state, waiting for conversion start
-    localparam CONV      = 1;  //conversion state: waiting for conversion to end to move onto acquisition state
-    localparam ACQ_START = 2;  //start of acquisition state, setting up clock signal
-    localparam ACQ_WAIT  = 3;  //waiting for acquisition state to end to go back to idle state
-    localparam ACQ_END   = 4;  //observing wait time until next acquisition cycle
+    reg  busy = 0;
+    reg  [$clog2(N_bit + 1) : 0] current_bit = 0;
     
     reg  sclk_d = 0;
     reg  sclk_enable = 0;
@@ -73,21 +65,14 @@ module adc#(
         .done(enable_delay_done)
     );
     
-    reg  busy = 0;
-    reg  [$clog2(N_bit + 1) : 0] current_bit = 0;
-    reg  adc_enable_d = 0;
-    wire adc_enable_rising_edge = adc_enable & ~adc_enable_d;
-    
-    assign busy_out = busy;
-    assign cnv_out = cnv_reg;
-    assign sclk_out = sclk_reg;
-    
-    always @(posedge clk) begin : state_register
-        state <= next_state;
-        adc_enable_d <= adc_enable;
-        cnv_d <= cnv_reg;
-        sclk_d <= sclk_reg;
-    end
+    //Define all the states
+    localparam IDLE      = 0;  //idle state, waiting for conversion start
+    localparam CONV      = 1;  //conversion state: waiting for conversion to end to move onto acquisition state
+    localparam ACQ_START = 2;  //start of acquisition state, setting up clock signal
+    localparam ACQ_WAIT  = 3;  //waiting for acquisition state to end to go back to idle state
+    localparam ACQ_END   = 4;  //observing wait time until next acquisition cycle
+    reg [2:0] state = 0;
+    reg [2:0] next_state = 0;
     
     always @(*) begin : next_state_logic
         next_state = state;
@@ -96,17 +81,11 @@ module adc#(
                 if(adc_enable) begin
                     next_state = CONV;
                 end
-                else begin
-                    next_state = next_state;
-                end
             end
             
             CONV: begin
                 if(conv_delay_done) begin
                     next_state = ACQ_START;
-                end
-                else begin
-                    next_state = next_state;
                 end
             end
             
@@ -114,24 +93,24 @@ module adc#(
                 if(enable_delay_done) begin
                     next_state = ACQ_WAIT;
                 end
-                else begin
-                    next_state = next_state;
-                end
             end
             
             ACQ_WAIT: begin
                 if(current_bit >= N) begin
                     next_state = IDLE;
                 end
-                else begin
-                    next_state = next_state;
-                end
             end
             
             default: begin
-                next_state = next_state;
+                next_state = IDLE;
             end
         endcase
+    end
+    
+    always @(posedge clk) begin : state_register
+        state <= next_state;
+        cnv_d <= cnv_reg;
+        sclk_d <= sclk_reg;
     end
     
     reg [N-1:0] data_buffer;
@@ -176,4 +155,8 @@ module adc#(
             end
         end
     end
+    
+    assign busy_out = busy;
+    assign cnv_out = cnv_reg;
+    assign sclk_out = sclk_reg;
 endmodule

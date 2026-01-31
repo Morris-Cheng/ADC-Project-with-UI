@@ -56,6 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 2
 set_param general.usePosixSpawnForFork 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35ticpg236-1L
@@ -75,6 +76,7 @@ read_verilog -library xil_defaultlib {
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/adc.v}
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/clock_divider.v}
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/delay_timer.v}
+  {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/display.v}
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/fifo.v}
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/uart_tx.v}
   {C:/Users/user/Basys 3 Project Files/ADC_continuous_output/ADC_continuous_output.srcs/sources_1/new/top.v}
