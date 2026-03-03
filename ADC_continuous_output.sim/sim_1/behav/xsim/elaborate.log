@@ -1,7 +1,7 @@
 Vivado Simulator v2025.1.0
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot top_tb_behav xil_defaultlib.top_tb xil_defaultlib.glbl -log elaborate.log 
+Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot top_tb_behav xil_defaultlib.top_tb xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -9,12 +9,11 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.clock_divider(CLOCK_CYCLE_TIME=1...
-Compiling module xil_defaultlib.delay_timer(CLOCK_CYCLE_TIME=10,...
-Compiling module xil_defaultlib.delay_timer(CLOCK_CYCLE_TIME=10,...
-Compiling module xil_defaultlib.adc(N=16,t_CONV=2200,t_EN=15,SCL...
-Compiling module xil_defaultlib.fifo(BUFFER_WIDTH=256,ADDR_WIDTH...
-Compiling module xil_defaultlib.uart_tx_default
+Compiling module xil_defaultlib.delay_timer(CLOCK_CYCLE_TIME=5,D...
+Compiling module xil_defaultlib.delay_timer(CLOCK_CYCLE_TIME=5,D...
+Compiling module unisims_ver.ODDR(INIT=1'b1)
+Compiling module unisims_ver.OBUF(DRIVE=22)
+Compiling module xil_defaultlib.adc(N=16,t_CONV=500,t_EN=15,CLK_...
 Compiling module xil_defaultlib.top_tb
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot top_tb_behav
