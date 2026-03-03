@@ -50,33 +50,53 @@ module top_tb();
     );
     
     always #2.5 clk = ~clk;
-    always #7.5 sclk_clk = ~sclk_clk;
+    always #6 sclk_clk = ~sclk_clk;
     
     initial begin
         reset = 1;
         #10;
         reset = 0;
         adc_enable = 1;
-        #537;
+        #572;
         
         data_in = 1;
-        #23;
+        #12;
         data_in = 0;
-        #36;
+        #12;
         
         data_in = 1;
-        #23;
+        #12;
         data_in = 0;
-        #36;
+        #12;
         
         data_in = 1;
-        #23;
+        #12;
         data_in = 0;
-        #36;
+        #12;
         
         data_in = 1;
-        #23;
+        #12;
         data_in = 0;
-        #36;
+        #12;
+        
+        data_in = 1;
+        #12;
+        data_in = 0;
+        #12;
+        
+        data_in = 1;
+        #12;
+        data_in = 0;
+        #12;
+        
+        data_in = 1;
+        #12;
+        data_in = 0;
+        #12;
+        
+//        data_in = 1;
+//        #12;
+//        data_in = 0;
+//        #12;
     end
 endmodule
